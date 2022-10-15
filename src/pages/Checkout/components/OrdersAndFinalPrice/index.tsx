@@ -54,7 +54,7 @@ export function OrdersAndFinalPrice({
   }
 
   const totalPriceOfItems = itemsOnShoppingCart.reduce((priceTotal, item) => {
-    const price = item.price * item.amount
+    const price = Number((item.price * item.amount).toFixed(1))
     return priceTotal + price
   }, 0)
 
@@ -65,7 +65,9 @@ export function OrdersAndFinalPrice({
     <OrdersAndFinalPriceContainer>
       <OrdersDiv>
         {itemsOnShoppingCart.map((item) => {
-          const price = priceFormatted(item.price * item.amount)
+          const price = priceFormatted(
+            Number((item.price * item.amount).toFixed(1)),
+          )
 
           return (
             <Orders key={item.id}>

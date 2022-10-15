@@ -47,9 +47,6 @@ export function coffeesReducer(state: CoffeesState, action: any) {
       return produce(state, (draft) => {
         const amountValue = draft.coffees[currentCoffeeIndex].amount
         draft.coffees[currentCoffeeIndex].amount = amountValue + 1
-
-        console.log(draft.coffees[currentCoffeeIndex].name)
-        console.log(draft.coffees[currentCoffeeIndex].amount)
       })
     }
     case ActionTypes.DECREASE_ITEM_AMOUNT_ON_SHOPPING_CART: {
