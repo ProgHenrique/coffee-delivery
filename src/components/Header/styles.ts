@@ -21,7 +21,12 @@ export const HeaderContainer = styled.header.attrs((props: AttributeProps) => ({
   position: -webkit-sticky;
   position: sticky;
   top: 0;
-  z-index: 1000
+  z-index: 1000;
+
+  #logo {
+    outline: 0;
+    box-shadow: 0 0 0 0 transparent;
+  }
 `
 
 export const LocationAndShoppingCartContainer = styled.div`

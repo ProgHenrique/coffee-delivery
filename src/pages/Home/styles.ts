@@ -1,10 +1,6 @@
 /* eslint-disable prettier/prettier */
 import styled from 'styled-components'
 
-interface AttributeProps {
-  inDisplay: boolean
-}
-
 export const HomeContainer = styled.main`
   max-width: 1120px;
   margin: auto;
@@ -92,11 +88,9 @@ export const SectionMenuOfCoffees = styled.section`
   }
 `
 
-export const BaseResetButton = styled.p`
+export const ResetButtonShow = styled.p`
   position: absolute;
-  font-size: 1rem;
-  font-family: 'Baloo 2', cursive;
-  font-weight: 800;
+  line-height: 0;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -109,9 +103,6 @@ export const BaseResetButton = styled.p`
   left: 50%;
   transform: translate(-50%, -50%);
   cursor: pointer;
-`
-
-export const ResetButtonShow = styled(BaseResetButton)`
   animation-name: 'showButtonReset';
   animation-duration: 0.4s;
   animation-fill-mode: forwards;
@@ -125,27 +116,6 @@ export const ResetButtonShow = styled(BaseResetButton)`
     to {
       top: -3rem;
       opacity: 1;
-    }
-  }
-`
-
-export const ResetButtonHidden = styled(BaseResetButton).attrs((props: AttributeProps) => ({
-  inDisplay: props.inDisplay,
-})) <AttributeProps>`
-  display: ${props => props.inDisplay ? 'flex' : 'none'};
-  top: -3rem;
-  animation-name: 'hideButtonReset';
-  animation-duration: 0.4s;
-  animation-fill-mode: forwards;
-
-  @keyframes hideButtonReset {
-    from {
-      opacity: 1;
-    }
-    to {
-      opacity: 0;
-      z-index: -10;
-      cursor: default;
     }
   }
 `

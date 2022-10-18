@@ -7,12 +7,20 @@ import { Home } from './pages/Home'
 import { Success } from './pages/Success'
 
 export function Router() {
-  const { paymentMethod, itemsOnShoppingCart } = useContext(CoffeeContext)
+  const { paymentMethod, itemsOnShoppingCart, setResetCoffeesList } =
+    useContext(CoffeeContext)
   const location = useLocation()
 
   useEffect(() => {
     window.scrollTo(0, 0)
   }, [location])
+
+  useEffect(() => {
+    if (location.pathname === '/checkout') {
+      setResetCoffeesList()
+    }
+  }, [location, setResetCoffeesList])
+
   return (
     <Routes>
       <Route path="/" element={<DefaultLayout />}>

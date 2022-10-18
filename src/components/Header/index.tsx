@@ -36,7 +36,7 @@ export function Header() {
   return (
     <HeaderContainer isScroll={isScroll} id="header">
       <nav>
-        <NavLink to="" end title="Home">
+        <NavLink id="logo" to="" end title="Home">
           <img src={logoCoffee} alt="" />
         </NavLink>
       </nav>

@@ -1,4 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
+import { X } from 'phosphor-react'
 import React, { useContext, useEffect, useState } from 'react'
 import CupOfCoffee from '../../assets/cup-of-coffee.svg'
 import { CoffeeContext } from '../../contexts/CoffeeContexts'
@@ -9,7 +10,6 @@ import {
   DescriptionCoffeeDeliveryContainer,
   DescriptionCoffeeDeliveryText,
   HomeContainer,
-  ResetButtonHidden,
   ResetButtonShow,
   SectionDescription,
   SectionMenuOfCoffees,
@@ -19,7 +19,6 @@ export function Home() {
   const { setCoffeesFilterArray, setResetCoffeesList, coffees } =
     useContext(CoffeeContext)
   const [hasFilterOn, setHasFilterOn] = useState(false)
-  const [inDisplayResetButton, setInDisplayResetButton] = useState(false)
 
   useEffect(() => {
     if (coffees.length === 14) {
@@ -45,7 +44,6 @@ export function Home() {
     setResetCoffeesList()
 
     setHasFilterOn(false)
-    setInDisplayResetButton(true)
   }
 
   return (
@@ -76,12 +74,10 @@ export function Home() {
             <span onClick={(e) => TagClicked(e)}>COM LEITE</span>
             <span onClick={(e) => TagClicked(e)}>ALCOÓLICO</span>
             <span onClick={(e) => TagClicked(e)}>GELADO</span>
-            {hasFilterOn ? (
-              <ResetButtonShow onClick={resetAllFilters}>X</ResetButtonShow>
-            ) : (
-              <ResetButtonHidden inDisplay={inDisplayResetButton}>
-                X
-              </ResetButtonHidden>
+            {hasFilterOn && (
+              <ResetButtonShow onClick={resetAllFilters}>
+                <X size={16} weight="bold" />
+              </ResetButtonShow>
             )}
           </div>
         </div>
