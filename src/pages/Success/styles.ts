@@ -1,14 +1,20 @@
 import styled from 'styled-components'
 
 export const SuccessOrderSection = styled.section`
+  width: 100%;
   max-width: 1120px;
   margin: auto;
   display: flex;
   flex-direction: column;
   padding: 5rem 0;
+
+  @media (max-width: 600px) {
+    padding: 1.5rem 1.5rem;
+  }
 `
 
 export const SuccessOrderMessege = styled.div`
+  width: 100%;
   display: flex;
   flex-direction: column;
   gap: 0.25rem;
@@ -30,11 +36,21 @@ export const SuccessOrderMessege = styled.div`
     height: 1.625rem;
     color: ${(props) => props.theme['base-subtitle']};
   }
+
+  @media (max-width: 600px) {
+    margin-bottom: 0;
+  }
 `
 
 export const AddressToDeliveryContainer = styled.div`
   display: flex;
   gap: 6.375rem;
+
+  @media (max-width: 600px) {
+    padding: 3rem 0;
+    flex-direction: column;
+    gap: 0rem;
+  }
 `
 
 export const AddressToDelivery = styled.div`
@@ -77,6 +93,11 @@ export const AddressToDelivery = styled.div`
         font-weight: 700;
       }
     }
+  }
+
+  @media (max-width: 600px) {
+    width: 100%;
+    padding: 2rem;
   }
 `
 

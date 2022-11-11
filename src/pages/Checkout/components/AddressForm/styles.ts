@@ -37,6 +37,10 @@ export const FormContainer = styled.div`
       }
     }
   }
+  
+  @media (max-width: 600px) {
+    padding: 2.5rem 2rem;
+  }
 `
 
 export const FormDiv = styled.div`
@@ -127,11 +131,10 @@ export const CityInformationDiv = styled.div`
   grid-template-columns: 35.71428571428571% 1fr 10.71%;
   column-gap: 0.75rem;
 
-  input[name='city'] {
-    width: 100%;
-  }
-
   @media (max-width: 600px) {
+    input[name='city'] {
+      width: 100%;
+    }
     grid-template-columns: 35.71428571428571% 1fr;
     column-gap: 0.75rem;
   }

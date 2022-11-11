@@ -22,6 +22,15 @@ export function AddressForm() {
   const [complementValue, setComplementValue] = useState('')
   const windowSize = useWindowSize()
 
+  if (document.querySelector('#state')?.getAttribute('value')) {
+    document
+      .querySelector('#state')
+      ?.setAttribute(
+        'value',
+        document.querySelector('#state')?.getAttribute('value')!.toUpperCase()!,
+      )!
+  }
+
   useEffect(() => {
     if (!complementValue) {
       setIsOnFocus(false)
@@ -164,9 +173,8 @@ export function AddressForm() {
               type="text"
               placeholder="UF"
               id="state"
-              {...register('state', { maxLength: 2 })}
+              {...register('state')}
               maxLength={2}
-              onChange={(e) => (e.target.value = e.target.value.toUpperCase())}
             />
             <datalist id="states">
               <option value={address.state} />

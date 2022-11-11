@@ -14,6 +14,7 @@ import {
 } from '../../../Home/components/CardsOfCoffees/styles'
 import React, { useContext } from 'react'
 import { CoffeeContext } from '../../../../contexts/CoffeeContexts'
+import { useWindowSize } from '../../../../hooks/useWindowSize'
 
 interface OrdersAndFinalPriceProps {
   isSubmitDisabled: boolean
@@ -60,6 +61,7 @@ export function OrdersAndFinalPrice({
 
   const priceOfItems = priceFormatted(totalPriceOfItems)
   const finalPrice = priceFormatted(totalPriceOfItems + 3.5)
+  const windowSize = useWindowSize()
 
   return (
     <OrdersAndFinalPriceContainer>
@@ -72,7 +74,11 @@ export function OrdersAndFinalPrice({
           return (
             <Orders key={item.id}>
               <div>
-                <img src={item.path} alt="" width={64} />
+                <img
+                  src={item.path}
+                  alt=""
+                  width={windowSize > 600 ? 64 : 48}
+                />
                 <div id="ItemNameAndRemove">
                   <span>{item.name}</span>
                   <div>

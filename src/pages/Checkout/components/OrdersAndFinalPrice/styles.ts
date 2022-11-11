@@ -7,6 +7,10 @@ export const OrdersAndFinalPriceContainer = styled.div`
   padding: 2.5rem;
   background: ${(props) => props.theme['base-card']};
   border-radius: 6px 44px;
+
+  @media (max-width: 600px) {
+    padding: 2.5rem 2rem;
+  }
 `
 
 export const OrdersDiv = styled.div`

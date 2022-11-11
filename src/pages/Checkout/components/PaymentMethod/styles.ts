@@ -8,6 +8,7 @@ export const PaymentContainer = styled.div`
   gap: 2rem;
   border-radius: 6px;
   background: ${(props) => props.theme['base-card']};
+  box-shadow: none;
 
   div:first-child {
     display: flex;
@@ -32,11 +33,26 @@ export const PaymentContainer = styled.div`
       }
     }
   }
+
+  @media (max-width: 600px) {
+    padding: 2.5rem 2rem;
+  }
 `
 export const PaymentChoiceContainer = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   column-gap: 0.75rem;
+
+  &:focus {
+    box-shadow: none;
+  }
+
+  @media (max-width: 600px) {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
 `
 
 export const PaymentChoice = styled.div`
@@ -68,7 +84,8 @@ export const PaymentChoice = styled.div`
   }
 
   input[type='radio'] {
-    display: none;
+    opacity: 0;
+    position: absolute;
   }
 
   input[type='radio']:hover + label {

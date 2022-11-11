@@ -27,7 +27,7 @@ export function Router() {
         />
         <Route
           path="/success"
-          element={paymentMethod ? <Success /> : <Navigate to="/home" />}
+          element={paymentMethod ? <Success /> : <Navigate to="/" />}
         />
       </Route>
     </Routes>

@@ -58,6 +58,7 @@ export function Checkout() {
 
   const navigate = useNavigate()
   function handleFinishedOrder(data: AddressFormData) {
+    data.state = data.state.toUpperCase()
     setAddressToDelivery(data)
     reset()
     navigate('/success')
