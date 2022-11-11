@@ -28,4 +28,10 @@ export const GlobalStyle = createGlobalStyle`
     font-size: 1rem;
     line-height: 130%;
   }
+
+  @media (max-width: 600px ) {
+  html{
+    font-size: 87.5%;
+  }
+}
 `

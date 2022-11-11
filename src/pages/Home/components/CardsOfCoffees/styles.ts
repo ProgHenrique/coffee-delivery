@@ -1,11 +1,20 @@
 import styled from 'styled-components'
 
-export const MenuOfCoffeesContainer = styled.div`
+interface MenuOfCoffeesContaineProps {
+  variant: number
+}
+
+export const MenuOfCoffeesContainer = styled.div<MenuOfCoffeesContaineProps>`
   margin-top: 3.375rem;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  column-gap: 2rem;
+  grid-template-columns: 1fr;
+  column-gap: 1rem;
   row-gap: 2.5rem;
+
+  @media (min-width: 601px) {
+    column-gap: 2rem;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
 `
 
 export const CardMenuOfCoffee = styled.div`
@@ -92,8 +101,12 @@ export const AddToCart = styled.div`
     span {
       display: flex;
       justify-content: center;
-      font-size: 1rem;
+      font-size: 1.25rem;
       width: 1.25rem;
+
+      @media (min-width: 601px) {
+        font-size: 1rem;
+      }
     }
   }
 

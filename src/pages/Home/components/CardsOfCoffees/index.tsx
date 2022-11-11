@@ -12,6 +12,7 @@ import {
 } from './styles'
 
 import { CoffeeContext } from '../../../../contexts/CoffeeContexts'
+import { useWindowSize } from '../../../../hooks/useWindowSize'
 
 export function CardsOfCoffees() {
   const {
@@ -45,13 +46,19 @@ export function CardsOfCoffees() {
     setAddToShoppingCart(key)
   }
 
+  const windowSize = useWindowSize()
+
   return (
-    <MenuOfCoffeesContainer>
+    <MenuOfCoffeesContainer variant={windowSize / 2}>
       {coffees.map((coffee) => {
         const price = priceFormatted(coffee.price)
         return (
           <CardMenuOfCoffee key={coffee.id}>
-            <img src={coffee.path} alt="" width={120} />
+            <img
+              src={coffee.path}
+              alt=""
+              width={windowSize > 600 ? 120 : 105}
+            />
             <CoffeeTags>
               {coffee.tags.arrayTags.map((tag, idx) => {
                 return <span key={idx}>{tag}</span>
@@ -71,7 +78,7 @@ export function CardsOfCoffees() {
                     id="minus"
                     onClick={handleAmountToBuy}
                   >
-                    <Minus size={14} weight="bold" />
+                    <Minus size={windowSize > 600 ? 14 : 18} weight="bold" />
                   </MinusIcon>
                   <span>{coffee.amount}</span>
                   <PlusIcon
@@ -80,7 +87,7 @@ export function CardsOfCoffees() {
                     id="plus"
                     onClick={handleAmountToBuy}
                   >
-                    <Plus size={14} weight="bold" />
+                    <Plus size={windowSize > 600 ? 14 : 18} weight="bold" />
                   </PlusIcon>
                 </div>
                 <div

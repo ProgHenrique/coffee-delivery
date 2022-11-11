@@ -16,11 +16,14 @@ const addressFormValidationSchema = zod.object({
   city: zod.string().min(1, 'Informe a cidade'),
   complement: zod.string(),
   district: zod.string().min(1, 'Informe o bairro'),
-  houseNumber: zod.string().min(1, 'Informe o número da casa'),
+  houseNumber: zod.number().min(1, 'Informe o número da casa'),
   paymentMethod: zod.string().min(1, 'Informe o método de pagamento'),
   state: zod.string().min(2, 'Informe o UF do estado'),
   street: zod.string().min(1, 'Informe a rua'),
-  zipCode: zod.string().min(8, 'Informe CEP'),
+  zipCode: zod
+    .number()
+    .min(0, 'Informe CEP')
+    .max(99999999, 'O cep deve conter contem 8 digitos'),
 })
 
 type AddressFormData = zod.infer<typeof addressFormValidationSchema>
@@ -34,11 +37,9 @@ export function Checkout() {
       city: '',
       complement: '',
       district: '',
-      houseNumber: '',
       paymentMethod: '',
       state: '',
       street: '',
-      zipCode: '',
     },
   })
   const { handleSubmit, watch, reset } = addressForm

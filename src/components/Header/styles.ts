@@ -5,9 +5,8 @@ interface AttributeProps {
   isScroll: boolean
 }
 
-export const HeaderContainer = styled.header.attrs((props: AttributeProps) => ({
-  isScroll: props.isScroll,
-})) <AttributeProps>`
+export const HeaderContainer = styled.header<AttributeProps>`
+  width: 100%;
   max-width: 1120px;
   margin: auto;
   display: flex;
@@ -26,6 +25,10 @@ export const HeaderContainer = styled.header.attrs((props: AttributeProps) => ({
   #logo {
     outline: 0;
     box-shadow: 0 0 0 0 transparent;
+  }
+
+  @media (max-width: 600px) {
+    padding: 2rem 1.5rem;
   }
 `
 
@@ -86,5 +89,9 @@ export const ItemsOnShoppingCart = styled.div`
     font-size: 0.75rem;
     line-height: 130%;
     color: ${(props) => props.theme['yellow-100']};
+
+    @media (max-width: 600px) {
+      font-size: 0.875rem;
+    }
   }
 `

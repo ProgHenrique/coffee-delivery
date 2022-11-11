@@ -83,6 +83,9 @@ export const InputZipCode = styled(BaseInput)`
 export const InputStreet = styled(BaseInput)`
   width: 100%;
 `
+export const InputState = styled(BaseInput)`
+  width: 20%;
+`
 
 export const NumberAndComplementDiv = styled.div`
   display: grid;
@@ -119,7 +122,17 @@ export const InputComplement = styled.div.attrs(
 `
 
 export const CityInformationDiv = styled.div`
+  box-sizing: border-box;
   display: grid;
   grid-template-columns: 35.71428571428571% 1fr 10.71%;
   column-gap: 0.75rem;
+
+  input[name='city'] {
+    width: 100%;
+  }
+
+  @media (max-width: 600px) {
+    grid-template-columns: 35.71428571428571% 1fr;
+    column-gap: 0.75rem;
+  }
 `

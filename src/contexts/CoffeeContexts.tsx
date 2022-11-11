@@ -5,6 +5,7 @@ import {
   useReducer,
   useState,
 } from 'react'
+import { useLocation } from 'react-router-dom'
 import Coffees from '../pages/Home/exportSVgs'
 import {
   addToShoppingCart,
@@ -26,11 +27,11 @@ interface AddressFormData {
   city: string
   complement?: string
   district: string
-  houseNumber: string
+  houseNumber: number
   paymentMethod?: string
   state: string
   street: string
-  zipCode: string
+  zipCode: number
 }
 
 interface CoffeeContextType {
@@ -121,6 +122,7 @@ export function CoffeeContextProvider({
     }
   })
 
+  const location = useLocation()
   const [paymentMethod, setPaymentMethod] = useState('')
 
   const [coffeesFilter, setCoffeesFilter] = useState<CoffeesContext[]>([])
@@ -134,6 +136,12 @@ export function CoffeeContextProvider({
     const stateJSON = JSON.stringify(address)
     localStorage.setItem('@coffee-delivery:address-delivery-1.0.0', stateJSON)
   }, [address])
+
+  useEffect(() => {
+    if (window.location.pathname === '/checkout') {
+      setResetCoffeesList()
+    }
+  }, [location])
 
   const { itemsOnShoppingCart } = coffeesState
 

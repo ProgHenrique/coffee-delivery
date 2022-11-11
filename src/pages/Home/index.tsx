@@ -3,6 +3,7 @@ import { X } from 'phosphor-react'
 import React, { useContext, useEffect, useState } from 'react'
 import CupOfCoffee from '../../assets/cup-of-coffee.svg'
 import { CoffeeContext } from '../../contexts/CoffeeContexts'
+import { useWindowSize } from '../../hooks/useWindowSize'
 import { CardsOfCoffees } from './components/CardsOfCoffees'
 import { DescriptionCoffeeDeliveryIcons } from './components/DescriptionCoffeeDeliveryIcons'
 
@@ -19,6 +20,8 @@ export function Home() {
   const { setCoffeesFilterArray, setResetCoffeesList, coffees } =
     useContext(CoffeeContext)
   const [hasFilterOn, setHasFilterOn] = useState(false)
+
+  const windowSize = useWindowSize()
 
   useEffect(() => {
     if (coffees.length === 14) {
@@ -60,26 +63,30 @@ export function Home() {
 
           <DescriptionCoffeeDeliveryIcons />
         </DescriptionCoffeeDeliveryContainer>
-        <div>
-          <img src={CupOfCoffee} alt="" />
-        </div>
+        {windowSize > 600 && (
+          <div>
+            <img src={CupOfCoffee} alt="" />
+          </div>
+        )}
       </SectionDescription>
 
       <SectionMenuOfCoffees>
         <div id="headerCards">
           <strong>Nossos cafés</strong>
-          <div>
-            <span onClick={(e) => TagClicked(e)}>TRADICIONAL</span>
-            <span onClick={(e) => TagClicked(e)}>ESPECIAL</span>
-            <span onClick={(e) => TagClicked(e)}>COM LEITE</span>
-            <span onClick={(e) => TagClicked(e)}>ALCOÓLICO</span>
-            <span onClick={(e) => TagClicked(e)}>GELADO</span>
-            {hasFilterOn && (
-              <ResetButtonShow onClick={resetAllFilters}>
-                <X size={16} weight="bold" />
-              </ResetButtonShow>
-            )}
-          </div>
+          {windowSize > 600 && (
+            <div>
+              <span onClick={(e) => TagClicked(e)}>TRADICIONAL</span>
+              <span onClick={(e) => TagClicked(e)}>ESPECIAL</span>
+              <span onClick={(e) => TagClicked(e)}>COM LEITE</span>
+              <span onClick={(e) => TagClicked(e)}>ALCOÓLICO</span>
+              <span onClick={(e) => TagClicked(e)}>GELADO</span>
+              {hasFilterOn && (
+                <ResetButtonShow onClick={resetAllFilters}>
+                  <X size={16} weight="bold" />
+                </ResetButtonShow>
+              )}
+            </div>
+          )}
         </div>
         <CardsOfCoffees />
       </SectionMenuOfCoffees>

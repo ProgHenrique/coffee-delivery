@@ -1,7 +1,8 @@
 import { MapPinLine } from 'phosphor-react'
-import React, { useContext, useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { useFormContext } from 'react-hook-form'
 import { CoffeeContext } from '../../../../contexts/CoffeeContexts'
+import { useWindowSize } from '../../../../hooks/useWindowSize'
 import {
   BaseInput,
   CityInformationDiv,
@@ -11,6 +12,7 @@ import {
   InputZipCode,
   NumberAndComplementDiv,
   InputComplement,
+  InputState,
 } from './styles'
 
 export function AddressForm() {
@@ -18,6 +20,7 @@ export function AddressForm() {
   const { register } = useFormContext()
   const [isOnFocus, setIsOnFocus] = useState(false)
   const [complementValue, setComplementValue] = useState('')
+  const windowSize = useWindowSize()
 
   useEffect(() => {
     if (!complementValue) {
@@ -40,10 +43,13 @@ export function AddressForm() {
       <FormDiv>
         <InputZipCode
           list="zipCodes"
-          type="text"
+          type="number"
           placeholder="CEP"
           id="zipCode"
-          {...register('zipCode')}
+          step={0}
+          min={0}
+          max={99999999}
+          {...register('zipCode', { valueAsNumber: true })}
         />
 
         <datalist id="zipCodes">
@@ -62,10 +68,12 @@ export function AddressForm() {
         <NumberAndComplementDiv>
           <BaseInput
             list="houseNumbers"
-            type="text"
+            type="number"
             placeholder="Número"
             id="houseNumber"
-            {...register('houseNumber')}
+            {...register('houseNumber', {
+              valueAsNumber: true,
+            })}
           />
           <datalist id="houseNumbers">
             <option value={address.houseNumber} />
@@ -85,39 +93,86 @@ export function AddressForm() {
             </datalist>
           </InputComplement>
         </NumberAndComplementDiv>
-        <CityInformationDiv>
-          <BaseInput
-            list="districts"
-            type="text"
-            placeholder="Bairro"
-            id="district"
-            {...register('district')}
-          />
-          <datalist id="districts">
-            <option value={address.district} />
-          </datalist>
-          <BaseInput
-            list="citys"
-            type="text"
-            placeholder="Cidade"
-            id="city"
-            {...register('city')}
-          />
-          <datalist id="citys">
-            <option value={address.city} />
-          </datalist>
-          <BaseInput
-            list="states"
-            type="text"
-            placeholder="UF"
-            id="state"
-            {...register('state')}
-            onChange={(e) => (e.target.value = e.target.value.toUpperCase())}
-          />
-          <datalist id="states">
-            <option value={address.state} />
-          </datalist>
-        </CityInformationDiv>
+
+        {windowSize > 600 ? (
+          <CityInformationDiv>
+            <BaseInput
+              list="districts"
+              type="text"
+              placeholder="Bairro"
+              id="district"
+              {...register('district')}
+            />
+            <datalist id="districts">
+              <option value={address.district} />
+            </datalist>
+
+            <BaseInput
+              list="citys"
+              type="text"
+              placeholder="Cidade"
+              id="city"
+              {...register('city')}
+            />
+            <datalist id="citys">
+              <option value={address.city} />
+            </datalist>
+
+            <BaseInput
+              list="states"
+              type="text"
+              placeholder="UF"
+              id="state"
+              {...register('state', { maxLength: 2 })}
+              maxLength={2}
+              onChange={(e) => (e.target.value = e.target.value.toUpperCase())}
+            />
+            <datalist id="states">
+              <option value={address.state} />
+            </datalist>
+          </CityInformationDiv>
+        ) : (
+          <CityInformationDiv>
+            <BaseInput
+              list="districts"
+              type="text"
+              placeholder="Bairro"
+              id="district"
+              {...register('district')}
+            />
+            <datalist id="districts">
+              <option value={address.district} />
+            </datalist>
+
+            <BaseInput
+              list="citys"
+              type="text"
+              placeholder="Cidade"
+              id="city"
+              {...register('city')}
+            />
+            <datalist id="citys">
+              <option value={address.city} />
+            </datalist>
+          </CityInformationDiv>
+        )}
+
+        {windowSize < 601 && (
+          <>
+            <InputState
+              list="states"
+              type="text"
+              placeholder="UF"
+              id="state"
+              {...register('state', { maxLength: 2 })}
+              maxLength={2}
+              onChange={(e) => (e.target.value = e.target.value.toUpperCase())}
+            />
+            <datalist id="states">
+              <option value={address.state} />
+            </datalist>
+          </>
+        )}
       </FormDiv>
     </FormContainer>
   )

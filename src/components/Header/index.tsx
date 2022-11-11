@@ -31,6 +31,8 @@ export function Header() {
     0,
   )
 
+  // console.log(document.querySelector('#header')?.clientTop)
+
   const shoppingCartEmpty = itemsOnShoppingCart.length > 0
 
   return (

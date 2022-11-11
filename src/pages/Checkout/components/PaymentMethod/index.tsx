@@ -1,5 +1,6 @@
 import { Bank, CreditCard, CurrencyDollar, Money } from 'phosphor-react'
 import { useFormContext } from 'react-hook-form'
+import { useWindowSize } from '../../../../hooks/useWindowSize'
 import {
   PaymentChoice,
   PaymentChoiceContainer,
@@ -8,6 +9,7 @@ import {
 
 export function PaymentMethod() {
   const { register } = useFormContext()
+  const windowSize = useWindowSize()
   return (
     <PaymentContainer>
       <div>
@@ -34,7 +36,7 @@ export function PaymentMethod() {
             <span>
               <CreditCard size={14} />
             </span>
-            <span>CARTÃO DE CRÉDITO</span>
+            <span>{windowSize > 600 ? 'CARTÃO DE CRÉDITO' : 'CRÉDITO'}</span>
           </label>
         </PaymentChoice>
         <PaymentChoice>
@@ -48,7 +50,7 @@ export function PaymentMethod() {
             <span>
               <Bank size={14} />
             </span>
-            <span>CARTÃO DE DÉBITO</span>
+            <span>{windowSize > 600 ? 'CARTÃO DE DÉBITO' : 'DÉBITO'}</span>
           </label>
         </PaymentChoice>
         <PaymentChoice>

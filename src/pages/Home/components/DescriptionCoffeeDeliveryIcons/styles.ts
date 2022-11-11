@@ -5,7 +5,12 @@ export const DescriptionCoffeeDeliveryIconsDiv = styled.div`
   grid-template-columns: 231px 1fr;
   column-gap: 2.5rem;
   row-gap: 1.25rem;
+  width: 100%;
   max-width: 567px;
+
+  @media (max-width: 600px) {
+    grid-template-columns: 1fr;
+  }
 `
 
 export const BaseIConsDescriptionCoffeeDelivery = styled.span`

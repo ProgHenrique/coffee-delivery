@@ -2,15 +2,23 @@
 import styled from 'styled-components'
 
 export const HomeContainer = styled.main`
+  width: 100%;
   max-width: 1120px;
   margin: auto;
+
+  @media (max-width: 600px) {
+    padding: 0 1.5rem;
+  }
 `
 
 export const SectionDescription = styled.section`
   display: flex;
-  gap: 3.5rem;
-  justify-content: space-between;
-  padding: 5.75rem 0;
+  padding: 4rem 0 2.5rem 0;
+
+  @media (min-width: 601px) {
+    gap: 3.5rem;
+    justify-content: space-between;
+  }
 `
 
 export const DescriptionCoffeeDeliveryContainer = styled.div`
@@ -43,6 +51,7 @@ export const DescriptionCoffeeDeliveryText = styled.div`
 export const SectionMenuOfCoffees = styled.section`
   margin-top: 2rem;
   margin-bottom: 2rem;
+  width: 100%;
 
   div#headerCards {
     display: flex;
